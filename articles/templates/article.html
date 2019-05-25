@@ -1,0 +1,68 @@
+<title> {{post.title}} </title>
+<body>
+    <div class="header">
+        {% load static %}
+        <img class="image" src="{% static 'img/dpb-logo.png' %}">
+        <h2 class="exit"><a href="/articles/">Все статьи</a></h2>
+        <link rel="stylesheet" href="{% static 'css/article.css' %}">
+		<script src="/static/js/jquery-3.3.1.min.js"></script>
+		<script src="/static/js/helloworld.js"></script>
+		<script src="/static/js/fold-post.js"></script>
+		<script src="/static/js/highlight-post.js"></script>
+		<script src="/static/js/picture.js"></script>
+		<div class="icons-for-parallax">
+          <img class="icon-for-parallax-first"  src="{% static 'img/article-icon-for-parallax.png' %}">
+          <img class="icon-for-parallax-second" src="{% static 'img/article-icon-for-parallax.png' %}">
+          <img class="icon-for-parallax-third"  src="{% static 'img/article-icon-for-parallax.png' %}">
+        </div>
+    </div>
+    <div class="article">
+	{% for post in posts %}
+		<div class="one-post">
+			<div class="post-title">
+				<h2><a href = "article/{{post.id}}">{{ post.title }}</a></h2>
+			</div>
+			<div style="clear: both"></div>
+			<input onclick="change()" type="button" value="Свернуть" id="myButton1" />
+			<div class="article-info">
+				<div class="article-author">{{ post.author.username }}</div>
+				<div class="article-created-date">{{ post.created_date }}</div> 
+			    <div class="article-text">{{ post.get_excerpt }}</div>
+			</div>
+			<div class="one-post-shadow"></div>
+		 </div>
+		{% endfor %}
+		<script>
+function change() // no ';' here
+{   
+    var displayState = "block";
+    var elem = document.getElementById("myButton1");
+    if (elem.value=="Свернуть") 
+	{elem.value = "Развернуть";
+	event.target.parentElement.getElementsByClassName('article-author')[0].style.display = "none";
+    event.target.parentElement.getElementsByClassName('article-created-date')[0].style.display = "none";
+    event.target.parentElement.getElementsByClassName('article-text')[0].style.display = "none";
+	}
+    else 
+	{elem.value = "Свернуть";
+ event.target .parentElement.getElementsByClassName('article-author')[0].style.display = displayState;
+ event.target.parentElement.getElementsByClassName('article-created-date')[0].style.display = displayState;
+ event.target.parentElement.getElementsByClassName('article-text')[0].style.display = displayState;
+	}
+	
+}
+function change1()
+{
+var clsheaders = document.getElementsByClassName("one-post");
+var foldBtns = document.getElementsByClassName("fold-button");
+
+for (var i = 0; i<foldBtns.length; i++){ foldBtns[i].addEventListener("click", function(event) {
+
+console.log("you clicked ", event.target);
+
+});
+
+}
+}
+</script>
+</body>

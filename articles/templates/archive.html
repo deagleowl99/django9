@@ -1,0 +1,25 @@
+<title> {{post.title}} </title>
+<body>
+    <div class="header">
+        {% load static %}
+	
+        <img class="image" src="{% static 'img/dpb-logo.png' %}">	
+        <h2 class="exit"><a href="/articles/">Все статьи</a></h2>
+		<script src="/static/js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/article.css' %}">		
+		<script src="/static/js/helloworld.js"></script>
+		<script src="/static/js/fold-post.js"></script>
+		<script src="/static/js/highlight-post.js"></script>
+		<script src="/static/js/picture.js"></script>		
+    </div>
+    <div class="archive">
+        <div class="one-post">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="article-info">
+                <div class="article-author">{{ post.author.username }}</div>
+                <div class="article-created-date">{{ post.created_date }}</div>
+            </div>
+        </div>
+        <p class="article-text">{{ post.text }}</p>
+    </div>
+</body>
